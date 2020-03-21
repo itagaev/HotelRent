@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { observer } from "mobx-react";
+import AppModel from '../../../models/app';
 
 import DateFnsUtils from "@date-io/date-fns";
 
@@ -21,10 +22,10 @@ import { HotelOutlined } from "@material-ui/icons";
 import { useStyles } from "./SearchForm.style";
 
 export const SearchBarForm = observer(() => {
-  const [inputText, setInputText] = useState<string | undefined>(undefined);
+  const [inputText, setInputText] = useState<string>("");
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [peopleNumber, setPeopleNumber] = useState<number>(1);
-  const [rentDays, setRentDays] = useState<number>(0);
+  const [rentDays, setRentDays] = useState<number>(1);
 
   const classes = useStyles();
 
@@ -87,7 +88,12 @@ export const SearchBarForm = observer(() => {
             else setRentDays(+e.currentTarget.value);
           }}
         />
-        <Button className={classes.button} variant="contained" color="primary">Поиск</Button>
+        <Button className={classes.button} variant="contained" color="primary" onClick={() => {
+          AppModel.set('city', inputText);
+          AppModel.set('date_from', selectedDate);
+          AppModel.set('peopleCnt', peopleNumber);
+          AppModel.set('dayCnt', rentDays);
+        }}>Поиск</Button>
       </Grid>
     </div>
   );

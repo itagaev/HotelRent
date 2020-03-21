@@ -1,8 +1,5 @@
-export interface Price {
-  1: number;
-  2?: number;
-  3?: number;
-  4?: number;
+export interface Price{
+  [key: number]: number
 }
 
 export interface Hotel {

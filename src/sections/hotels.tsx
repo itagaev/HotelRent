@@ -25,7 +25,7 @@ const useStlyes = makeStyles(theme => ({
     flexGrow: 1,
     marginTop: "10px",
     width: "50%",
-    height: "250px"
+    height: "280px"
   }
 }));
 
@@ -45,10 +45,23 @@ export const HotelsSection = observer(() => {
     AppModel.set("selected", String(newTab));
   };
 
-  const hotelsShow = AppModel.selected === '0' ? HotelModel.hotels : HotelModel.hotels.filter(hotel => hotel.favorite);
+  const hotelsShow =
+    AppModel.selected === "0"
+      ? HotelModel.hotels
+          .filter(
+            hotel =>
+              hotel.city
+                .toLowerCase()
+                .startsWith(AppModel.city.toLowerCase()) && hotel.hasPlace
+          )
+          .filter(hotel => hotel.maxPlace >= AppModel.peopleCnt)
+      : HotelModel.hotels.filter(hotel => hotel.favorite);
+
+  console.log("app", AppModel);
 
   return (
     <div className={classes.root}>
+      {AppModel.selected}
       {AppModel.loadingHotels ? (
         <Container className={classes.container}>
           <CircularProgress className={classes.spinner} />
@@ -68,7 +81,7 @@ export const HotelsSection = observer(() => {
           {hotelsShow.map(hotel => {
             return (
               <Container key={hotel.id} className={classes.container}>
-                 <HotelItem hotel={hotel} />
+                <HotelItem hotel={hotel}/>
               </Container>
             );
           })}

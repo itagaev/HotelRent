@@ -1,4 +1,6 @@
 import React from "react";
+import { observer } from "mobx-react";
+import { action } from 'mobx';
 import { Hotel } from "../../mocks/types";
 import { Grid, Paper, ButtonBase, Typography, Chip } from "@material-ui/core";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
@@ -8,19 +10,28 @@ import { DescItem } from "../DescItem";
 import { useStyles } from "./HotelItem.style";
 
 import HotelModel from "../../models/hotel";
+import AppModel from "../../models/app";
+import { Price } from '../../mocks/types';
 
 interface Props {
   hotel: Hotel;
 }
 
-export const HotelItem = ({ hotel }: Props) => {
+export const HotelItem = observer(({ hotel }: Props) => {
   const classes = useStyles();
 
-  const handleChangeFav = (id: number) => {    
-    const [ ...hotels ] = HotelModel.hotels;
-    hotels.find(hotel => hotel.id === id)!.favorite = !hotels.find(hotel => hotel.id === id)!.favorite;
-    HotelModel.set('hotels', hotels);
-};
+  const calcPrice = (price: Price) => {
+      const unitPrice = price[AppModel.peopleCnt];
+      return AppModel.dayCnt * unitPrice;
+  }
+
+  const handleChangeFav = action((id: number) => {
+    const [...hotels] = HotelModel.hotels;
+    hotels.find(hotel => hotel.id === id)!.favorite = !hotels.find(
+      hotel => hotel.id === id
+    )!.favorite;
+    HotelModel.set("hotels", hotels);
+  });
 
   return (
     <Paper>
@@ -74,9 +85,9 @@ export const HotelItem = ({ hotel }: Props) => {
                 {hotel.banking && "Онлайн-оплата"}
                 {hotel.breakfast && ", бесплатный завтрак"}
               </Typography>
+              <br />
             </>
           )}
-          <br />
           {hotel.prepayment && (
             <>
               <Typography color="primary" display="inline">
@@ -89,10 +100,16 @@ export const HotelItem = ({ hotel }: Props) => {
               >
                 {hotel.prepayment && "Предоплата"}
               </Typography>
+              <br />
             </>
           )}
+          <Typography color="primary" display="inline">
+            Цена на {AppModel.dayCnt} дней/день:{" "}
+          </Typography>
+          <Chip color="primary" size="small" label={calcPrice(hotel.price)} />
+          <br />
         </Grid>
       </Grid>
     </Paper>
   );
-};
+});
