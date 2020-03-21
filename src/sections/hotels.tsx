@@ -38,7 +38,7 @@ export const HotelsSection = observer(() => {
     setTimeout(() => {
       HotelModel.set("hotels", hotels);
       AppModel.set("loadingHotels", false);
-    }, 1500);
+    }, 2500);
   }, []);
 
   const handleTabChange = (e: React.ChangeEvent<{}>, newTab: number) => {

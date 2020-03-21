@@ -89,10 +89,15 @@ export const SearchBarForm = observer(() => {
           }}
         />
         <Button className={classes.button} variant="contained" color="primary" onClick={() => {
-          AppModel.set('city', inputText);
-          AppModel.set('date_from', selectedDate);
-          AppModel.set('peopleCnt', peopleNumber);
-          AppModel.set('dayCnt', rentDays);
+          AppModel.set("loadingHotels", true);
+
+          setTimeout(() => {
+            AppModel.set('city', inputText);
+            AppModel.set('date_from', selectedDate);
+            AppModel.set('peopleCnt', peopleNumber);
+            AppModel.set('dayCnt', rentDays);
+            AppModel.set("loadingHotels", false);
+          }, 1000);
         }}>Поиск</Button>
       </Grid>
     </div>
