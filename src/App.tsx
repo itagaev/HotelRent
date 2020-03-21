@@ -1,11 +1,12 @@
 import React from "react";
-import { Header, SearchSection } from "./sections";
+import { Header, SearchSection, HotelsSection } from "./sections";
 
 const App = () => {
   return (
     <>
       <Header />
       <SearchSection />
+      <HotelsSection />
     </>
   );
 };
