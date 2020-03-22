@@ -57,8 +57,6 @@ export const HotelsSection = observer(() => {
           .filter(hotel => hotel.maxPlace >= AppModel.peopleCnt)
       : HotelModel.hotels.filter(hotel => hotel.favorite);
 
-  console.log("app", AppModel);
-
   return (
     <div className={classes.root}>
       {AppModel.selected}
