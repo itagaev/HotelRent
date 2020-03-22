@@ -14,7 +14,7 @@ import AppModel from "../models/app";
 import HotelModel from "../models/hotel";
 import { HotelItem } from "../components";
 
-const useStlyes = makeStyles(theme => ({
+const useStlyes = makeStyles(() => ({
   root: {
     marginTop: "20px"
   },
