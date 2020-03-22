@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { observer } from "mobx-react";
-import AppModel from '../../../models/app';
+import AppModel from "../../../models/app";
 
 import DateFnsUtils from "@date-io/date-fns";
 
@@ -88,17 +88,24 @@ export const SearchBarForm = observer(() => {
             else setRentDays(+e.currentTarget.value);
           }}
         />
-        <Button className={classes.button} variant="contained" color="primary" onClick={() => {
-          AppModel.set("loadingHotels", true);
+        <Button
+          className={classes.button}
+          variant="contained"
+          color="primary"
+          onClick={() => {
+            AppModel.set("loadingHotels", true);
 
-          setTimeout(() => {
-            AppModel.set('city', inputText);
-            AppModel.set('date_from', selectedDate);
-            AppModel.set('peopleCnt', peopleNumber);
-            AppModel.set('dayCnt', rentDays);
-            AppModel.set("loadingHotels", false);
-          }, 1000);
-        }}>Поиск</Button>
+            setTimeout(() => {
+              AppModel.set("city", inputText);
+              AppModel.set("date_from", selectedDate);
+              AppModel.set("peopleCnt", peopleNumber);
+              AppModel.set("dayCnt", rentDays);
+              AppModel.set("loadingHotels", false);
+            }, 1000);
+          }}
+        >
+          Поиск
+        </Button>
       </Grid>
     </div>
   );

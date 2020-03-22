@@ -7,20 +7,21 @@ interface IAppModel {
   loadingHotels: boolean;
   
   city: string;
-  date_from: Date;
   peopleCnt: number;
   dayCnt: number;
+  date_from: Date | null;
 }
 
 class AppModel implements IAppModel {
   selected = "0"; // 0 - all 1 - favorites
   loadingHotels = false;
   city = '';
-  date_from = new Date();
+
+  date_from: Date | null = new Date();
   peopleCnt = 1;
   dayCnt = 1;
 
-  set<U extends keyof IAppModel>(item: U, value: any) {
+  set<U extends keyof IAppModel>(item: U, value: this[U]) {
     this[item] = value;
   }
 }

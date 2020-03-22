@@ -10,7 +10,7 @@ interface Hotels {
 class HotelModel implements Hotels {
   hotels: Hotel[] = [];
 
-  set<U extends keyof Hotels>(item: U, value: any) {
+  set<U extends keyof Hotels>(item: U, value: this[U]) {
     this[item] = value;
   }
 }
