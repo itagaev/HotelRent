@@ -6,7 +6,7 @@ if ('HEROKU' in process.env || ('DYNO' in process.env && process.env.HOME === '/
   const ChildProcess = require('child_process');
 
 
-  let deps = pkg.devDependencies;
+  let deps = pkg.dependencies;
   let packages = "";
 
   Object.keys(deps).forEach((key) => {
