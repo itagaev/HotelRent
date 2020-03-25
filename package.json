@@ -29,7 +29,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "postinstall": "node ./ops/heroku-build.js" 
-    // "heroku-postbuild": "webpack --config webpack.prod.js"
   },
   "eslintConfig": {
     "extends": "react-app"
