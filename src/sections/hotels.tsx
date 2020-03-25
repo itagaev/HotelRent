@@ -59,7 +59,6 @@ export const HotelsSection = observer(() => {
 
   return (
     <div className={classes.root}>
-      {AppModel.selected}
       {AppModel.loadingHotels ? (
         <Container className={classes.container}>
           <CircularProgress className={classes.spinner} />
