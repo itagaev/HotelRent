@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
 import { observer } from "mobx-react";
-import AppModel from "../../../models/app";
+import { Store } from "../../../store";
 
 import DateFnsUtils from "@date-io/date-fns";
 
@@ -94,14 +94,14 @@ export const SearchBarForm = observer(() => {
           variant="contained"
           color="primary"
           onClick={() => {
-            AppModel.set("loadingHotels", true);
+            Store.set("loadingHotels", true);
 
             setTimeout(() => {
-              AppModel.set("city", inputText);
-              AppModel.set("date_from", selectedDate);
-              AppModel.set("peopleCnt", peopleNumber);
-              AppModel.set("dayCnt", rentDays);
-              AppModel.set("loadingHotels", false);
+              Store.set("city", inputText);
+              Store.set("date_from", selectedDate);
+              Store.set("peopleCnt", peopleNumber);
+              Store.set("dayCnt", rentDays);
+              Store.set("loadingHotels", false);
             }, 1000);
           }}
         >

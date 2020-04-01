@@ -11,8 +11,7 @@ import {
 
 import { hotels } from "../mocks/hotels";
 
-import AppModel from "../models/app";
-import HotelModel from "../models/hotel";
+import { Store } from "../store";
 import { HotelItem } from "../components";
 
 const useStlyes = makeStyles(() => ({
@@ -34,37 +33,37 @@ export const HotelsSection = observer(() => {
   const classes = useStlyes();
 
   useEffect(() => {
-    AppModel.set("loadingHotels", true);
+    Store.set("loadingHotels", true);
 
     setTimeout(() => {
-      HotelModel.set("hotels", hotels);
-      AppModel.set("loadingHotels", false);
+      Store.set("hotels", hotels);
+      Store.set("loadingHotels", false);
     }, 2500);
   }, []);
 
   const hotelsShow =
-    AppModel.selected === "all"
-      ? HotelModel.hotels
+    Store.selected === "all"
+      ? Store.hotels
           .filter(
             hotel =>
               hotel.city
                 .toLowerCase()
-                .startsWith(AppModel.city.toLowerCase()) && hotel.hasPlace
+                .startsWith(Store.city.toLowerCase()) && hotel.hasPlace
           )
-          .filter(hotel => hotel.maxPlace >= AppModel.peopleCnt)
-      : HotelModel.hotels.filter(hotel => hotel.favorite);
+          .filter(hotel => hotel.maxPlace >= Store.peopleCnt)
+      : Store.hotels.filter(hotel => hotel.favorite);
 
   return (
     <div className={classes.root}>
-      {AppModel.loadingHotels ? (
+      {Store.loadingHotels ? (
         <Container className={classes.container}>
           <CircularProgress className={classes.spinner} />
         </Container>
       ) : (
         <>
           <Tabs
-            value={AppModel.selected}
-            onChange={(e, newTab) => AppModel.set("selected", newTab)}
+            value={Store.selected}
+            onChange={(e, newTab) => Store.set("selected", newTab)}
             indicatorColor="primary"
             textColor="primary"
             centered

@@ -1,11 +1,12 @@
 import { observable, configure, action, decorate } from "mobx";
+import { Hotel } from "./mocks/types";
 
 configure({ enforceActions: "observed" });
 
 interface IAppModel {
   selected: "all" | "favorites";
   loadingHotels: boolean;
-
+  hotels: Hotel[];
   city: string;
   peopleCnt: number;
   dayCnt: number;
@@ -16,7 +17,7 @@ class AppModel implements IAppModel {
   selected: "all" | "favorites" = "all";
   loadingHotels = false;
   city = "";
-
+  hotels: Hotel[] = [];
   date_from: Date | null = new Date();
   peopleCnt = 1;
   dayCnt = 1;
@@ -33,8 +34,9 @@ decorate(AppModel, {
   date_from: observable,
   peopleCnt: observable,
   dayCnt: observable,
+  hotels: observable,
 
   set: action
 });
 
-export default new AppModel();
+export const Store = new AppModel();

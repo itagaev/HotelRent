@@ -1,6 +1,6 @@
 import * as React from "react";
 import { observer } from "mobx-react";
-import { action } from 'mobx';
+import { action } from "mobx";
 import { Hotel } from "../../mocks/types";
 import { Grid, Paper, ButtonBase, Typography, Chip } from "@material-ui/core";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
@@ -9,9 +9,8 @@ import { Rating } from "@material-ui/lab";
 import { DescItem } from "../DescItem";
 import { useStyles } from "./HotelItem.style";
 
-import HotelModel from "../../models/hotel";
-import AppModel from "../../models/app";
-import { Price } from '../../mocks/types';
+import { Store } from "../../store";
+import { Price } from "../../mocks/types";
 
 interface Props {
   hotel: Hotel;
@@ -21,16 +20,16 @@ export const HotelItem = observer(({ hotel }: Props) => {
   const classes = useStyles();
 
   const calcPrice = (price: Price) => {
-      const unitPrice = price[AppModel.peopleCnt];
-      return AppModel.dayCnt * unitPrice;
-  }
+    const unitPrice = price[Store.peopleCnt];
+    return Store.dayCnt * unitPrice;
+  };
 
   const handleChangeFav = action((id: number) => {
-    const [...hotels] = HotelModel.hotels;
+    const [...hotels] = Store.hotels;
     hotels.find(hotel => hotel.id === id)!.favorite = !hotels.find(
       hotel => hotel.id === id
     )!.favorite;
-    HotelModel.set("hotels", hotels);
+    Store.set("hotels", hotels);
   });
 
   return (
@@ -104,7 +103,7 @@ export const HotelItem = observer(({ hotel }: Props) => {
             </>
           )}
           <Typography color="primary" display="inline">
-            Цена на {AppModel.dayCnt} дней/день:{" "}
+            Цена на {Store.dayCnt} дней/день:{" "}
           </Typography>
           <Chip color="primary" size="small" label={calcPrice(hotel.price)} />
           <br />
