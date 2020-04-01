@@ -1,14 +1,10 @@
-import React from "react";
+import * as React from "react";
 import { Header, SearchSection, HotelsSection } from "./sections";
 
-const App = () => {
-  return (
-    <>
-      <Header />
-      <SearchSection />
-      <HotelsSection />
-    </>
-  );
-};
-
-export default App;
+export const App: React.FC = () => (
+  <>
+    <Header />
+    <SearchSection />
+    <HotelsSection />
+  </>
+);

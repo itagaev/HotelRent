@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import * as React from "react";
+import { useEffect } from "react";
 import { observer } from "mobx-react";
 import {
   Container,
@@ -16,16 +17,16 @@ import { HotelItem } from "../components";
 
 const useStlyes = makeStyles(() => ({
   root: {
-    marginTop: "20px"
+    marginTop: 20
   },
   spinner: {
     marginLeft: "50%"
   },
   container: {
     flexGrow: 1,
-    marginTop: "10px",
+    marginTop: 10,
     width: "50%",
-    height: "280px"
+    height: 280
   }
 }));
 
@@ -41,12 +42,8 @@ export const HotelsSection = observer(() => {
     }, 2500);
   }, []);
 
-  const handleTabChange = (e: React.ChangeEvent<{}>, newTab: number) => {
-    AppModel.set("selected", String(newTab));
-  };
-
   const hotelsShow =
-    AppModel.selected === "0"
+    AppModel.selected === "all"
       ? HotelModel.hotels
           .filter(
             hotel =>
@@ -66,19 +63,19 @@ export const HotelsSection = observer(() => {
       ) : (
         <>
           <Tabs
-            value={+AppModel.selected}
-            onChange={handleTabChange}
+            value={AppModel.selected}
+            onChange={(e, newTab) => AppModel.set("selected", newTab)}
             indicatorColor="primary"
             textColor="primary"
             centered
           >
-            <Tab label="Все" />
-            <Tab label="Избранное" />
+            <Tab label="Все" value="all" />
+            <Tab label="Избранное" value="favorites" />
           </Tabs>
           {hotelsShow.map(hotel => {
             return (
               <Container key={hotel.id} className={classes.container}>
-                <HotelItem hotel={hotel}/>
+                <HotelItem hotel={hotel} />
               </Container>
             );
           })}

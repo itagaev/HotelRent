@@ -3,9 +3,9 @@ import { observable, configure, action, decorate } from "mobx";
 configure({ enforceActions: "observed" });
 
 interface IAppModel {
-  selected: string;
+  selected: "all" | "favorites";
   loadingHotels: boolean;
-  
+
   city: string;
   peopleCnt: number;
   dayCnt: number;
@@ -13,9 +13,9 @@ interface IAppModel {
 }
 
 class AppModel implements IAppModel {
-  selected = "0"; // 0 - all 1 - favorites
+  selected: "all" | "favorites" = "all";
   loadingHotels = false;
-  city = '';
+  city = "";
 
   date_from: Date | null = new Date();
   peopleCnt = 1;

@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { Container, makeStyles } from "@material-ui/core";
 import { SearchBar } from '../components';
 
@@ -9,7 +9,7 @@ const useStlyes = makeStyles(theme => ({
   container: {
     flexGrow: 1,
     width: "75%",
-    height: "240px"
+    height: 240
   }
 }));
 

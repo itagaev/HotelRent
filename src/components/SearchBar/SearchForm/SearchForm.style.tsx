@@ -1,22 +1,22 @@
 import { makeStyles } from "@material-ui/core";
 
-export const useStyles = makeStyles(theme => ({
+export const useStyles = makeStyles(() => ({
   root: {
-    marginTop: "20px",
+    marginTop: 20
   },
   input: {
-      width: "25%"
+    width: "25%"
   },
   date: {
-      marginLeft: "10px",
-      width: "13%"
+    marginLeft: 10,
+    width: "13%"
   },
   peopleNumber: {
-      marginLeft: "10px",
-      width: "14%"
+    marginLeft: 10,
+    width: "14%"
   },
   button: {
-      marginTop: "5px",
-      marginLeft: "10px"
+    marginTop: 5,
+    marginLeft: 10
   }
 }));
