@@ -1,6 +1,6 @@
-import { Hotel } from "./types";
+import { IHotelItem } from "./components/HotelItem";
 
-export const hotels: Hotel[] = [
+export const hotels: IHotelItem[] = [
   {
     id: 1,  
     city: "Алматы",  

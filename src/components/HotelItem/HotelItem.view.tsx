@@ -1,7 +1,7 @@
 import * as React from "react";
 import { observer } from "mobx-react";
 import { action } from "mobx";
-import { Hotel } from "../../mocks/types";
+import { IHotelItem } from "./HotelItem.types";
 import { Grid, Paper, ButtonBase, Typography, Chip } from "@material-ui/core";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -10,16 +10,15 @@ import { DescItem } from "../DescItem";
 import { useStyles } from "./HotelItem.style";
 
 import { Store } from "../../store";
-import { Price } from "../../mocks/types";
 
 interface Props {
-  hotel: Hotel;
+  hotel: IHotelItem;
 }
 
 export const HotelItem = observer(({ hotel }: Props) => {
   const classes = useStyles();
 
-  const calcPrice = (price: Price) => {
+  const calcPrice = (price: { [key: number]: number }) => {
     const unitPrice = price[Store.peopleCnt];
     return Store.dayCnt * unitPrice;
   };

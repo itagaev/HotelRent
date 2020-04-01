@@ -9,7 +9,7 @@ import {
   CircularProgress
 } from "@material-ui/core";
 
-import { hotels } from "../mocks/hotels";
+import { hotels } from "../hotels.mock";
 
 import { Store } from "../store";
 import { HotelItem } from "../components";

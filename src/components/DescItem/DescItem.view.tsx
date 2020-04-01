@@ -6,7 +6,7 @@ interface Props {
   value: string;
 }
 
-export const DescItem = ({ keyItem, value }: Props) => {
+export const DescItem: React.FC<Props> = ({ keyItem, value }) => {
   return (
     <>
       <Typography color="primary" display="inline">

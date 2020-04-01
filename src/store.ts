@@ -1,33 +1,33 @@
 import { observable, configure, action, decorate } from "mobx";
-import { Hotel } from "./mocks/types";
+import { IHotelItem } from "./components/HotelItem";
 
 configure({ enforceActions: "observed" });
 
-interface IAppModel {
+interface IStoreModel {
   selected: "all" | "favorites";
   loadingHotels: boolean;
-  hotels: Hotel[];
+  hotels: IHotelItem[];
   city: string;
   peopleCnt: number;
   dayCnt: number;
   date_from: Date | null;
 }
 
-class AppModel implements IAppModel {
+class StoreModel implements IStoreModel {
   selected: "all" | "favorites" = "all";
   loadingHotels = false;
   city = "";
-  hotels: Hotel[] = [];
+  hotels: IHotelItem[] = [];
   date_from: Date | null = new Date();
   peopleCnt = 1;
   dayCnt = 1;
 
-  set<U extends keyof IAppModel>(item: U, value: this[U]) {
+  set<U extends keyof IStoreModel>(item: U, value: this[U]) {
     this[item] = value;
   }
 }
 
-decorate(AppModel, {
+decorate(StoreModel, {
   selected: observable,
   loadingHotels: observable,
   city: observable,
@@ -39,4 +39,4 @@ decorate(AppModel, {
   set: action
 });
 
-export const Store = new AppModel();
+export const Store = new StoreModel();
