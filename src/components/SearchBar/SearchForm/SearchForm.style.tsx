@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 
-export const useStyles = makeStyles(() => ({
+export const useSearchFormStyles = makeStyles(() => ({
   root: {
     marginTop: 20
   },

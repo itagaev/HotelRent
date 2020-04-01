@@ -7,16 +7,16 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import { Rating } from "@material-ui/lab";
 import { DescItem } from "../DescItem";
-import { useStyles } from "./HotelItem.style";
+import { useHotelItemStyles } from "./HotelItem.style";
 
 import { Store } from "../../store";
 
-interface Props {
+export interface HotelItemProps {
   hotel: IHotelItem;
 }
 
-export const HotelItem = observer(({ hotel }: Props) => {
-  const classes = useStyles();
+export const HotelItem: React.FC<HotelItemProps> = observer(({ hotel }) => {
+  const classes = useHotelItemStyles();
 
   const calcPrice = (price: { [key: number]: number }) => {
     const unitPrice = price[Store.peopleCnt];

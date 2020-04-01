@@ -14,7 +14,7 @@ import { hotels } from "../hotels.mock";
 import { Store } from "../store";
 import { HotelItem } from "../components";
 
-const useStlyes = makeStyles(() => ({
+const useHotelsSectionStlyes = makeStyles(() => ({
   root: {
     marginTop: 20
   },
@@ -29,8 +29,8 @@ const useStlyes = makeStyles(() => ({
   }
 }));
 
-export const HotelsSection = observer(() => {
-  const classes = useStlyes();
+export const HotelsSection: React.FC = observer(() => {
+  const classes = useHotelsSectionStlyes();
 
   useEffect(() => {
     Store.set("loadingHotels", true);

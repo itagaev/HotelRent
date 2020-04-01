@@ -2,7 +2,7 @@ import * as React from "react";
 import { Container, makeStyles } from "@material-ui/core";
 import { SearchBar } from '../components';
 
-const useStlyes = makeStyles(theme => ({
+const useSearchSectionStlyes = makeStyles(theme => ({
   root: {
     backgroundColor: "#f7f7f7"
   },
@@ -13,8 +13,8 @@ const useStlyes = makeStyles(theme => ({
   }
 }));
 
-export const SearchSection = () => {
-  const classes = useStlyes();
+export const SearchSection: React.FC = () => {
+  const classes = useSearchSectionStlyes();
 
   return (
     <div className={classes.root}>

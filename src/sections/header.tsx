@@ -2,7 +2,7 @@ import * as React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
 
-const useStyles = makeStyles(theme => ({
+const useHeaderStyles = makeStyles(theme => ({
   appBar: {
     backgroundColor: "#003580"
   },
@@ -11,8 +11,8 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export const Header = () => {
-  const classes = useStyles();
+export const Header: React.FC = () => {
+  const classes = useHeaderStyles();
 
   return (
     <AppBar className={classes.appBar} position="static">

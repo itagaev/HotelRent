@@ -1,12 +1,12 @@
 import * as React from "react";
 import { Typography } from "@material-ui/core";
 
-interface Props {
+export interface DescItemProps {
   keyItem: string;
   value: string;
 }
 
-export const DescItem: React.FC<Props> = ({ keyItem, value }) => {
+export const DescItem: React.FC<DescItemProps> = ({ keyItem, value }) => {
   return (
     <>
       <Typography color="primary" display="inline">

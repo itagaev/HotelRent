@@ -20,15 +20,15 @@ import {
 } from "@material-ui/pickers";
 
 import { HotelOutlined } from "@material-ui/icons";
-import { useStyles } from "./SearchForm.style";
+import { useSearchFormStyles } from "./SearchForm.style";
 
-export const SearchBarForm = observer(() => {
+export const SearchBarForm: React.FC = observer(() => {
   const [inputText, setInputText] = useState<string>("");
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [peopleNumber, setPeopleNumber] = useState<number>(1);
   const [rentDays, setRentDays] = useState<number>(1);
 
-  const classes = useStyles();
+  const classes = useSearchFormStyles();
 
   const handleDateChange = (date: Date | null) => {
     setSelectedDate(date);
