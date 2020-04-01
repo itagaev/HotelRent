@@ -25,9 +25,14 @@ export const HotelItem: React.FC<HotelItemProps> = observer(({ hotel }) => {
 
   const handleChangeFav = action((id: number) => {
     const [...hotels] = Store.hotels;
-    hotels.find(hotel => hotel.id === id)!.favorite = !hotels.find(
-      hotel => hotel.id === id
-    )!.favorite;
+    const triggeredHotelIndex = hotels.findIndex(hotel => hotel.id === id);
+    const triggeredHotel = hotels[triggeredHotelIndex];
+    
+    hotels[triggeredHotelIndex] = {
+      ...triggeredHotel,
+      favorite: !triggeredHotel.favorite
+    };
+
     Store.set("hotels", hotels);
   });
 
