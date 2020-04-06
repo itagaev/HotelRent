@@ -1,12 +1,12 @@
 import { observable, configure, action, decorate } from "mobx";
-import { IHotelItem } from "./components/HotelItem";
+import { HotelItemShape } from "./Hotels";
 
 configure({ enforceActions: "observed" });
 
 interface IStoreModel {
-  selected: "all" | "favorites";
+  selectedHotelsListView: "all" | "favorites";
   loadingHotels: boolean;
-  hotels: IHotelItem[];
+  hotels: HotelItemShape[];
   city: string;
   peopleCnt: number;
   dayCnt: number;
@@ -14,10 +14,10 @@ interface IStoreModel {
 }
 
 class StoreModel implements IStoreModel {
-  selected: "all" | "favorites" = "all";
+  selectedHotelsListView: "all" | "favorites" = "all";
   loadingHotels = false;
   city = "";
-  hotels: IHotelItem[] = [];
+  hotels: HotelItemShape[] = [];
   date_from: Date | null = new Date();
   peopleCnt = 1;
   dayCnt = 1;
@@ -28,7 +28,7 @@ class StoreModel implements IStoreModel {
 }
 
 decorate(StoreModel, {
-  selected: observable,
+  selectedHotelsListView: observable,
   loadingHotels: observable,
   city: observable,
   date_from: observable,

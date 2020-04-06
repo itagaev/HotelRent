@@ -1,10 +1,16 @@
 import * as React from "react";
-import { Header, SearchSection, HotelsSection } from "./sections";
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
+import { Header } from "./header";
+import { SearchSection } from './Search';
+import { HotelsSection } from './Hotels';
 
 export const App: React.FC = () => (
   <>
-    <Header />
-    <SearchSection />
-    <HotelsSection />
+    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <Header />
+      <SearchSection />
+      <HotelsSection />
+    </MuiPickersUtilsProvider>
   </>
 );

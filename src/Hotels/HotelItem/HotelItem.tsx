@@ -1,18 +1,18 @@
 import * as React from "react";
 import { observer } from "mobx-react";
 import { action } from "mobx";
-import { IHotelItem } from "./HotelItem.types";
+import { HotelItemShape } from "./HotelItem.types";
 import { Grid, Paper, ButtonBase, Typography, Chip } from "@material-ui/core";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import { Rating } from "@material-ui/lab";
-import { DescItem } from "../DescItem";
+import { DescItem } from './DescItem';
 import { useHotelItemStyles } from "./HotelItem.style";
 
 import { Store } from "../../store";
 
 export interface HotelItemProps {
-  hotel: IHotelItem;
+  hotel: HotelItemShape;
 }
 
 export const HotelItem: React.FC<HotelItemProps> = observer(({ hotel }) => {
@@ -27,7 +27,7 @@ export const HotelItem: React.FC<HotelItemProps> = observer(({ hotel }) => {
     const [...hotels] = Store.hotels;
     const triggeredHotelIndex = hotels.findIndex(hotel => hotel.id === id);
     const triggeredHotel = hotels[triggeredHotelIndex];
-    
+
     hotels[triggeredHotelIndex] = {
       ...triggeredHotel,
       favorite: !triggeredHotel.favorite
@@ -38,7 +38,7 @@ export const HotelItem: React.FC<HotelItemProps> = observer(({ hotel }) => {
 
   return (
     <Paper>
-      <Grid container style={{ height: "100%", padding: "10px" }}>
+      <Grid container className={classes.root}>
         <Grid item xs={4} className={classes.image}>
           <ButtonBase>
             <img src={hotel.imgLink} alt="Hotel pic" />
@@ -52,12 +52,12 @@ export const HotelItem: React.FC<HotelItemProps> = observer(({ hotel }) => {
             <Rating value={hotel.stars} readOnly size="small" />
             {hotel.favorite ? (
               <FavoriteIcon
-                style={{ cursor: "pointer" }}
+                className={classes.favIcon}
                 onClick={() => handleChangeFav(hotel.id)}
               />
             ) : (
               <FavoriteBorderIcon
-                style={{ cursor: "pointer" }}
+                className={classes.favIcon}
                 onClick={() => handleChangeFav(hotel.id)}
               />
             )}
@@ -73,7 +73,7 @@ export const HotelItem: React.FC<HotelItemProps> = observer(({ hotel }) => {
             keyItem="Количество мест"
             value={`От 1 до ${hotel.maxPlace}`}
           />
-          <DescItem keyItem="Описание" value={hotel.contacts} />
+          <DescItem keyItem="Контакты" value={hotel.contacts} />
 
           {(hotel.banking || hotel.breakfast) && (
             <>
@@ -83,7 +83,7 @@ export const HotelItem: React.FC<HotelItemProps> = observer(({ hotel }) => {
               <Typography
                 variant="body2"
                 display="inline"
-                style={{ color: "#077812" }}
+                className={classes.adv}
               >
                 {hotel.banking && "Онлайн-оплата"}
                 {hotel.breakfast && ", бесплатный завтрак"}
@@ -99,9 +99,9 @@ export const HotelItem: React.FC<HotelItemProps> = observer(({ hotel }) => {
               <Typography
                 variant="body2"
                 display="inline"
-                style={{ color: "red" }}
+                className={classes.disAdv}
               >
-                {hotel.prepayment && "Предоплата"}
+                Предоплата
               </Typography>
               <br />
             </>

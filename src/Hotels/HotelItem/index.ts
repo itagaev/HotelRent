@@ -1,2 +1,2 @@
-export * from './HotelItem.view';
+export * from './HotelItem';
 export * from './HotelItem.types';

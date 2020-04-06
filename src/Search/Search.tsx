@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Container, makeStyles } from "@material-ui/core";
-import { SearchBar } from '../components';
+import { SearchBar } from "./SearchBar";
 
 const useSearchSectionStlyes = makeStyles(theme => ({
   root: {

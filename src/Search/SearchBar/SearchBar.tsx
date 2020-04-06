@@ -2,13 +2,12 @@ import * as React from "react";
 import { observer } from "mobx-react";
 import { makeStyles } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
+import { SearchBarForm } from "./SearchForm/SearchForm";
 
-import { SearchBarForm } from "./SearchForm";
-
-export const useSearchBarStyles = makeStyles(theme => ({
+export const useSearchBarStyles = makeStyles((theme) => ({
   root: {
-    padding: "3.5% 0% 9.5% 0%"
-  }
+    padding: "3.5% 0% 9.5% 0%",
+  },
 }));
 
 export const SearchBar: React.FC = observer(() => {

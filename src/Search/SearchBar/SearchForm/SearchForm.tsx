@@ -1,9 +1,7 @@
+import { KeyboardDatePicker } from "@material-ui/pickers";
 import * as React from "react";
-import { useState } from "react";
 import { observer } from "mobx-react";
 import { Store } from "../../../store";
-
-import DateFnsUtils from "@date-io/date-fns";
 
 import {
   FormControl,
@@ -12,33 +10,31 @@ import {
   InputAdornment,
   Grid,
   TextField,
-  Button
+  Button,
 } from "@material-ui/core";
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker
-} from "@material-ui/pickers";
 
 import { HotelOutlined } from "@material-ui/icons";
 import { useSearchFormStyles } from "./SearchForm.style";
 
 export const SearchBarForm: React.FC = observer(() => {
-  const [inputText, setInputText] = useState<string>("");
-  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
-  const [peopleNumber, setPeopleNumber] = useState<number>(1);
-  const [rentDays, setRentDays] = useState<number>(1);
+  const [inputText, setInputText] = React.useState("");
+  const [selectedDate, setSelectedDate] = React.useState<Date | null>(new Date());
+  const [peopleNumber, setPeopleNumber] = React.useState(1);
+  const [rentDays, setRentDays] = React.useState(1);
 
   const classes = useSearchFormStyles();
 
-  const handleDateChange = (date: Date | null) => {
-    setSelectedDate(date);
-  };
-
-  const handleChangePeopleNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePeopleNumberChanged = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const { value } = e.currentTarget;
-    if (+value <= 0) setPeopleNumber(1);
-    else if (+value > 4) setPeopleNumber(4);
-    else setPeopleNumber(+value);
+    if (+value <= 0) {
+      setPeopleNumber(1);
+    } else if (+value > 4) {
+      setPeopleNumber(4);
+    } else {
+      setPeopleNumber(+value);
+    }
   };
 
   return (
@@ -54,37 +50,35 @@ export const SearchBarForm: React.FC = observer(() => {
               </InputAdornment>
             }
             value={inputText}
-            onChange={e => {
+            onChange={(e) => {
               setInputText(e.currentTarget.value);
             }}
           />
         </FormControl>
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <KeyboardDatePicker
-            className={classes.date}
-            disableToolbar
-            variant="inline"
-            format="MM/dd/yyyy"
-            label="День заселения"
-            value={selectedDate}
-            onChange={handleDateChange}
-          />
-        </MuiPickersUtilsProvider>
+        <KeyboardDatePicker
+          className={classes.date}
+          disableToolbar
+          variant="inline"
+          format="MM/dd/yyyy"
+          label="День заселения"
+          value={selectedDate}
+          onChange={(date) => setSelectedDate(date)}
+        />
         <TextField
           className={classes.peopleNumber}
           label="Количество людей"
           type="number"
           value={peopleNumber}
-          onChange={handleChangePeopleNumber}
+          onChange={handlePeopleNumberChanged}
           InputLabelProps={{
-            shrink: true
+            shrink: true,
           }}
         />
         <TextField
           className={classes.peopleNumber}
           label="Количество дней"
           value={rentDays}
-          onChange={e => {
+          onChange={(e) => {
             if (isNaN(+e.currentTarget.value)) setRentDays(0);
             else setRentDays(+e.currentTarget.value);
           }}

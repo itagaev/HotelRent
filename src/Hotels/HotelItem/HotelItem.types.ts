@@ -1,4 +1,4 @@
-export interface IHotelItem {
+export interface HotelItemShape {
     id: number;
     city: string;
     name: string;
