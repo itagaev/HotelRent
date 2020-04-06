@@ -6,7 +6,7 @@ import { Grid, Paper, ButtonBase, Typography, Chip } from "@material-ui/core";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import { Rating } from "@material-ui/lab";
-import { DescItem } from './DescItem';
+import { DescItem } from "./DescItem";
 import { useHotelItemStyles } from "./HotelItem.style";
 
 import { Store } from "../../store";
@@ -23,14 +23,61 @@ export const HotelItem: React.FC<HotelItemProps> = observer(({ hotel }) => {
     return Store.dayCnt * unitPrice;
   };
 
+  const renderOptions = () => {
+    const advList = hotel.advantages.reduce((prev, cur, index) => {
+      if (index === 0) return prev.charAt(0).toUpperCase() + prev.slice(1);
+      return prev + ", " + cur;
+    }, hotel.advantages[0]);
+
+    const disadvList = hotel.disadvantages.reduce((prev, cur, index) => {
+      if (index === 0) return prev.charAt(0).toUpperCase() + prev.slice(1);
+      return prev + ", " + cur;
+    }, hotel.disadvantages[0]);
+
+    return (
+      <>
+        {hotel.advantages.length === 0 ? null : (
+          <>
+            <Typography color="primary" display="inline">
+              Плюсы:{" "}
+            </Typography>
+            <Typography
+              variant="body2"
+              display="inline"
+              className={classes.adv}
+            >
+              {advList}
+            </Typography>
+            <br />
+          </>
+        )}
+        {hotel.disadvantages.length === 0 ? null : (
+          <>
+            <Typography color="primary" display="inline">
+              Минусы:{" "}
+            </Typography>
+            <Typography
+              variant="body2"
+              display="inline"
+              className={classes.disAdv}
+            >
+              {disadvList}
+            </Typography>
+            <br />
+          </>
+        )}
+      </>
+    );
+  };
+
   const handleChangeFav = action((id: number) => {
     const [...hotels] = Store.hotels;
-    const triggeredHotelIndex = hotels.findIndex(hotel => hotel.id === id);
+    const triggeredHotelIndex = hotels.findIndex((hotel) => hotel.id === id);
     const triggeredHotel = hotels[triggeredHotelIndex];
 
     hotels[triggeredHotelIndex] = {
       ...triggeredHotel,
-      favorite: !triggeredHotel.favorite
+      favorite: !triggeredHotel.favorite,
     };
 
     Store.set("hotels", hotels);
@@ -74,38 +121,7 @@ export const HotelItem: React.FC<HotelItemProps> = observer(({ hotel }) => {
             value={`От 1 до ${hotel.maxPlace}`}
           />
           <DescItem keyItem="Контакты" value={hotel.contacts} />
-
-          {(hotel.banking || hotel.breakfast) && (
-            <>
-              <Typography color="primary" display="inline">
-                Плюсы:{" "}
-              </Typography>
-              <Typography
-                variant="body2"
-                display="inline"
-                className={classes.adv}
-              >
-                {hotel.banking && "Онлайн-оплата"}
-                {hotel.breakfast && ", бесплатный завтрак"}
-              </Typography>
-              <br />
-            </>
-          )}
-          {hotel.prepayment && (
-            <>
-              <Typography color="primary" display="inline">
-                Минусы:{" "}
-              </Typography>
-              <Typography
-                variant="body2"
-                display="inline"
-                className={classes.disAdv}
-              >
-                Предоплата
-              </Typography>
-              <br />
-            </>
-          )}
+          {renderOptions()}
           <Typography color="primary" display="inline">
             Цена на {Store.dayCnt} дней/день:{" "}
           </Typography>

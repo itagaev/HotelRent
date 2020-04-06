@@ -16,13 +16,12 @@ export const hotels: HotelItemShape[] = [
       3: 35000,
       4: 60000,
     },
-    prepayment: true,
-    breakfast: true,
+    advantages: ["бесплатный завтрак", "онлайн-оплата"],
+    disadvantages: ["предоплата"],
     favorite: false,
     imgLink:
       "https://r-cf.bstatic.com/xdata/images/hotel/square220/16723416.webp?k=10a4c7adfe60342b3e5a91e75a59290b1f0f62fb5cec350b3c83865776359c86&o=",
     contacts: "+7-747-909-7212",
-    banking: true,
   },
   {
     id: 2,
@@ -39,13 +38,12 @@ export const hotels: HotelItemShape[] = [
       2: 15000,
       3: 25000,
     },
-    prepayment: false,
-    breakfast: false,
+    advantages: ["онлайн-оплата"],
+    disadvantages: [],
     favorite: false,
     imgLink:
       "https://r-cf.bstatic.com/xdata/images/hotel/square220/153056764.webp?k=87573493ae417164c2b23cbcad17604a23e9e5c9d0cd034c9aba6f99a4650493&o=",
     contacts: "+7-747-853-8636",
-    banking: true,
   },
   {
     id: 3,
@@ -61,12 +59,11 @@ export const hotels: HotelItemShape[] = [
       1: 10000,
       2: 15000,
     },
-    prepayment: false,
-    breakfast: false,
+    advantages: [],
+    disadvantages: [],
     favorite: false,
     imgLink:
       "https://q-cf.bstatic.com/xdata/images/hotel/square220/211331834.webp?k=7735c228aee3618d2107b58211f267bf71236626a6b9db1f29463fe4d5d48401&o=",
     contacts: "+7-747-853-8636",
-    banking: false,
   },
 ];
