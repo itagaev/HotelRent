@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/HotelRent/static/js/main.9ebf58d9.chunk.js",
+    "main.js.map": "/HotelRent/static/js/main.9ebf58d9.chunk.js.map",
+    "runtime-main.js": "/HotelRent/static/js/runtime-main.ba638760.js",
+    "runtime-main.js.map": "/HotelRent/static/js/runtime-main.ba638760.js.map",
+    "static/js/2.66b83522.chunk.js": "/HotelRent/static/js/2.66b83522.chunk.js",
+    "static/js/2.66b83522.chunk.js.map": "/HotelRent/static/js/2.66b83522.chunk.js.map",
+    "index.html": "/HotelRent/index.html",
+    "precache-manifest.9921609719855651ec7af01ca41fd5dc.js": "/HotelRent/precache-manifest.9921609719855651ec7af01ca41fd5dc.js",
+    "service-worker.js": "/HotelRent/service-worker.js",
+    "static/js/2.66b83522.chunk.js.LICENSE.txt": "/HotelRent/static/js/2.66b83522.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ba638760.js",
+    "static/js/2.66b83522.chunk.js",
+    "static/js/main.9ebf58d9.chunk.js"
+  ]
+}
