@@ -1,7 +1,7 @@
 import * as React from "react";
 import { observer } from "mobx-react";
 import { action } from "mobx";
-import { Grid, Paper, ButtonBase, Typography, Chip } from "@material-ui/core";
+import { Grid, Paper, Typography, Chip } from "@material-ui/core";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import { Rating } from "@material-ui/lab";
@@ -74,9 +74,7 @@ export const HotelItem: React.FC<HotelItemProps> = observer(({ hotel }) => {
     <Paper>
       <Grid container className={classes.root}>
         <Grid item xs={4} className={classes.image}>
-          <ButtonBase>
-            <img src={hotel.imgLink} alt="Hotel pic" />
-          </ButtonBase>
+          <img src={hotel.imgLink} alt="Hotel pic" className={classes.img}/>
         </Grid>
         <Grid item xs={8}>
           <div>

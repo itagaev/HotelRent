@@ -4,6 +4,9 @@ export const useHotelItemStyles = makeStyles(() => ({
   image: {
     margin: "auto",
   },
+  img: {
+    maxWidth: "95%",
+  },
   favIcon: {
     cursor: "pointer",
   },
