@@ -36,7 +36,7 @@ decorate(StoreModel, {
   dayCnt: observable,
   hotels: observable,
 
-  set: action
+  set: action,
 });
 
 export const Store = new StoreModel();

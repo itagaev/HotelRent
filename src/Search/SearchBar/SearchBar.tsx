@@ -1,7 +1,7 @@
 import * as React from "react";
 import { observer } from "mobx-react";
-import { makeStyles } from "@material-ui/core";
-import { Typography } from "@material-ui/core";
+import { makeStyles, Typography } from "@material-ui/core";
+
 import { SearchBarForm } from "./SearchForm/SearchForm";
 
 export const useSearchBarStyles = makeStyles((theme) => ({

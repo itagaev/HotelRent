@@ -1,12 +1,15 @@
 import * as React from "react";
 import { observer } from "mobx-react";
 import { action } from "mobx";
-import { HotelItemShape } from "./HotelItem.types";
 import { Grid, Paper, ButtonBase, Typography, Chip } from "@material-ui/core";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import { Rating } from "@material-ui/lab";
+
+import { HotelItemShape } from "./HotelItem.types";
 import { DescItem } from "./DescItem";
+import { HotelOption } from "./HotelOption";
+
 import { useHotelItemStyles } from "./HotelItem.style";
 
 import { Store } from "../../store";
@@ -18,12 +21,12 @@ export interface HotelItemProps {
 export const HotelItem: React.FC<HotelItemProps> = observer(({ hotel }) => {
   const classes = useHotelItemStyles();
 
-  const calcPrice = (price: { [key: number]: number }) => {
+  const calcPrice = (price: HotelItemShape["price"]) => {
     const unitPrice = price[Store.peopleCnt];
     return Store.dayCnt * unitPrice;
   };
 
-  const renderOptions = () => {
+  const renderHotelOptions = () => {
     const advList = hotel.advantages.reduce((prev, cur, index) => {
       if (index === 0) return prev.charAt(0).toUpperCase() + prev.slice(1);
       return prev + ", " + cur;
@@ -37,34 +40,18 @@ export const HotelItem: React.FC<HotelItemProps> = observer(({ hotel }) => {
     return (
       <>
         {hotel.advantages.length === 0 ? null : (
-          <>
-            <Typography color="primary" display="inline">
-              Плюсы:{" "}
-            </Typography>
-            <Typography
-              variant="body2"
-              display="inline"
-              className={classes.adv}
-            >
-              {advList}
-            </Typography>
-            <br />
-          </>
+          <HotelOption
+            options={advList}
+            optionTextColor="inherit"
+            optionText="Плюсы"
+          />
         )}
         {hotel.disadvantages.length === 0 ? null : (
-          <>
-            <Typography color="primary" display="inline">
-              Минусы:{" "}
-            </Typography>
-            <Typography
-              variant="body2"
-              display="inline"
-              className={classes.disAdv}
-            >
-              {disadvList}
-            </Typography>
-            <br />
-          </>
+          <HotelOption
+            options={disadvList}
+            optionTextColor="error"
+            optionText="Минусы"
+          />
         )}
       </>
     );
@@ -121,7 +108,7 @@ export const HotelItem: React.FC<HotelItemProps> = observer(({ hotel }) => {
             value={`От 1 до ${hotel.maxPlace}`}
           />
           <DescItem keyItem="Контакты" value={hotel.contacts} />
-          {renderOptions()}
+          {renderHotelOptions()}
           <Typography color="primary" display="inline">
             Цена на {Store.dayCnt} дней/день:{" "}
           </Typography>

@@ -2,13 +2,13 @@ import * as React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
 
-const useHeaderStyles = makeStyles(theme => ({
+const useHeaderStyles = makeStyles((theme) => ({
   appBar: {
-    backgroundColor: "#003580"
+    backgroundColor: "#003580",
   },
   title: {
-    marginLeft: theme.spacing(6)
-  }
+    marginLeft: theme.spacing(6),
+  },
 }));
 
 export const Header: React.FC = () => {

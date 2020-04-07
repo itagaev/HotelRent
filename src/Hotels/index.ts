@@ -1,2 +1,2 @@
 export * from "./Hotels";
-export * from './HotelItem';
+export * from "./HotelItem";

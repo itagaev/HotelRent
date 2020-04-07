@@ -1,15 +1,15 @@
 import * as React from "react";
 import { observer } from "mobx-react";
 import { Container, Tabs, Tab, CircularProgress } from "@material-ui/core";
-import { useHotelsSectionStlyes } from "./Hotels.style";
 
 import { hotels } from "../hotels.mock";
-
 import { Store } from "../store";
 import { HotelItem } from "./HotelItem";
 
+import { useHotelsSectionStyles } from "./Hotels.style";
+
 export const HotelsSection: React.FC = observer(() => {
-  const classes = useHotelsSectionStlyes();
+  const classes = useHotelsSectionStyles();
 
   React.useEffect(() => {
     Store.set("loadingHotels", true);

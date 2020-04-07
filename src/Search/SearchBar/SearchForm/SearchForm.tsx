@@ -1,8 +1,6 @@
 import { KeyboardDatePicker } from "@material-ui/pickers";
 import * as React from "react";
 import { observer } from "mobx-react";
-import { Store } from "../../../store";
-
 import {
   FormControl,
   InputLabel,
@@ -11,22 +9,25 @@ import {
   Grid,
   TextField,
   Button,
+  TextFieldProps,
 } from "@material-ui/core";
-
 import { HotelOutlined } from "@material-ui/icons";
+
+import { Store } from "../../../store";
+
 import { useSearchFormStyles } from "./SearchForm.style";
 
 export const SearchBarForm: React.FC = observer(() => {
   const [inputText, setInputText] = React.useState("");
-  const [selectedDate, setSelectedDate] = React.useState<Date | null>(new Date());
+  const [selectedDate, setSelectedDate] = React.useState<Date | null>(
+    new Date()
+  );
   const [peopleNumber, setPeopleNumber] = React.useState(1);
   const [rentDays, setRentDays] = React.useState(1);
 
   const classes = useSearchFormStyles();
 
-  const handlePeopleNumberChanged = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handlePeopleNumberChanged: TextFieldProps["onChange"] = (e) => {
     const { value } = e.currentTarget;
     if (+value <= 0) {
       setPeopleNumber(1);
@@ -35,6 +36,18 @@ export const SearchBarForm: React.FC = observer(() => {
     } else {
       setPeopleNumber(+value);
     }
+  };
+
+  const handleSearchSubmit = () => {
+    Store.set("loadingHotels", true);
+
+    setTimeout(() => {
+      Store.set("city", inputText);
+      Store.set("date_from", selectedDate);
+      Store.set("peopleCnt", peopleNumber);
+      Store.set("dayCnt", rentDays);
+      Store.set("loadingHotels", false);
+    }, 1000);
   };
 
   return (
@@ -87,17 +100,7 @@ export const SearchBarForm: React.FC = observer(() => {
           className={classes.button}
           variant="contained"
           color="primary"
-          onClick={() => {
-            Store.set("loadingHotels", true);
-
-            setTimeout(() => {
-              Store.set("city", inputText);
-              Store.set("date_from", selectedDate);
-              Store.set("peopleCnt", peopleNumber);
-              Store.set("dayCnt", rentDays);
-              Store.set("loadingHotels", false);
-            }, 1000);
-          }}
+          onClick={handleSearchSubmit}
         >
           Поиск
         </Button>

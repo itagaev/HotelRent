@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 
-export const useHotelsSectionStlyes = makeStyles(() => ({
+export const useHotelsSectionStyles = makeStyles(() => ({
   root: {
     marginTop: 20,
   },

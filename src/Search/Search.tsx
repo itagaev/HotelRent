@@ -1,16 +1,17 @@
 import * as React from "react";
 import { Container, makeStyles } from "@material-ui/core";
+
 import { SearchBar } from "./SearchBar";
 
-const useSearchSectionStlyes = makeStyles(theme => ({
+const useSearchSectionStlyes = makeStyles((theme) => ({
   root: {
-    backgroundColor: "#f7f7f7"
+    backgroundColor: "#f7f7f7",
   },
   container: {
     flexGrow: 1,
     width: "75%",
-    height: 240
-  }
+    height: 240,
+  },
 }));
 
 export const SearchSection: React.FC = () => {

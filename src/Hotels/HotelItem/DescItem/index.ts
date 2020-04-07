@@ -1,1 +1,1 @@
-export * from './DescItem';
+export * from "./DescItem";
